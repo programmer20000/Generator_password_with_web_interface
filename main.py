@@ -1,10 +1,12 @@
 import os
 from random import randint
+
 import pywebio
-from pywebio import start_server
-from pywebio.output import (put_image, put_html, put_button, put_success, put_error, put_row, clear)
-from pywebio.input import (input, NUMBER)
 from pyperclip import copy
+from pywebio import start_server
+from pywebio.input import (input, NUMBER)
+from pywebio.output import (put_image, put_html, put_button, put_success, put_error, put_row, clear)
+
 from symbols_for_password.symbols_for_password import symbols_for_password
 
 pywebio.config(title='Generator Password')
@@ -14,6 +16,7 @@ password = ''
 
 
 def refresh_page():
+    # todo: This function is for refresh page by press button
     main()
 
 
@@ -22,10 +25,14 @@ def next_interface():
     put_success('Generating password is successful', closable=True)
 
     put_row([put_button(label='copy password', onclick=lambda: copy(password)), None,
-             put_button(label='refresh page', onclick=refresh_page)],size='16% 5px 16%')
+             put_button(label='refresh page', onclick=refresh_page), put_button(label='write in file', onclick='')],
+            size='16% 5px 16%')
+
 
 
 def generator_password():
+    # todo: This function is for generate password
+
     try:
         length_password_input = input(placeholder='Please Enter length password', type=NUMBER, maxlength=2048)
         global password
