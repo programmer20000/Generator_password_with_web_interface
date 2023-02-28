@@ -5,8 +5,7 @@ import pywebio
 from pyperclip import copy
 from pywebio import start_server
 from pywebio.input import (input, NUMBER)
-from pywebio.output import (put_image, put_html, put_button, put_success, put_error, put_row, clear)
-from pywebio.session import download
+from pywebio.output import (put_image, put_html, put_button, put_success, put_error, put_row, clear, put_file, put_grid)
 
 from symbols_for_password.symbols_for_password import symbols_for_password
 
@@ -23,15 +22,25 @@ class GeneratorPassword:
         # todo: This function is for refresh page by press button
         self.run()
 
+    def write_and_read_password_file(self, your_password: str):
+        # todo: we now write password in file
+        with open(file='password.txt', mode='w') as file:
+            file.write(your_password)
+
+        # todo: we now read password from file
+        with open(file='password.txt', mode='rb') as file:
+            content = file.read()
+            put_file(name='your_password.txt', content=content, label='download file')
+
     def next_interface(self):
         put_html(f'<h1>Your Password is : {self.password} </h1>')
         put_success('Generating password is successful', closable=True)
 
         put_row([put_button(label='copy password', onclick=lambda: copy(self.password)), None,
                  put_button(label='refresh page', onclick=self.refresh_page),
-                 put_button(label='write in file',
-                            onclick=[lambda: download(name='download file', content=self.password)])],
-                size='16% 5px 16%')
+                 put_button(label='write in file and download',
+                            onclick=lambda: self.write_and_read_password_file(your_password=self.password))],
+                size='16% 16px 16%')
 
     def generator_password(self):
         # todo: This function is for generate password
