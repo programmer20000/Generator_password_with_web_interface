@@ -19,7 +19,7 @@ def copy_password(password: str) -> str:
 
 
 def refresh_page(func):
-    """This function is in state of the development"""
+    # todo: This function is in state of the development
     return func()
 
 def next_interface(password):
