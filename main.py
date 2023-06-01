@@ -13,6 +13,7 @@ class GeneratorPassword:
         pywebio.config(title='Generator Paasword', theme='dark')
 
     def run(self):
+        # todo: This method give start to app
         clear()
         logo_path = os.path.join('image', 'logo.png')
         put_image(open(file=logo_path, mode='rb').read())

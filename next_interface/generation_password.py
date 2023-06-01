@@ -1,24 +1,27 @@
 from random import randint
 
-from pywebio.input import (radio,input, NUMBER)
-from pywebio.output import (toast,put_text)
+from pywebio.input import (radio, input, NUMBER)
+from pywebio.output import (toast, put_text)
 
-from .next_interface import next_interface
 from symbols_for_password import symbols_for_password
+from .next_interface import next_interface
 
-def select_variance(password:str):
-    """This function is in state of the development"""
+
+def select_variance(password: str):
+    # todo: This function is in state of the development
     put_text('This option at will')
-    variance  = radio("Choose one", options=['uppercase', 'lowercase'])
-    
+    variance = radio("Choose one", options=['uppercase', 'lowercase'])
+
     match variance:
         case 'uppercase':
             password.upper()
 
         case 'lowercase':
             password.lower()
-        
+
+
 password = ''
+
 
 def generator_password():
     global password
